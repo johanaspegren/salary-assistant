@@ -34,9 +34,8 @@ services:
     dockerContext: ./frontend
     plan: free
     region: frankfurt
-    buildCommand: npm run build
     envVars:
-      - key: VITE_API_URL
+      - key: BACKEND_URL
         fromService:
           type: web
           name: salary-assistant-backend
