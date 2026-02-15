@@ -56,14 +56,14 @@ export function ChatWindow({ messages, isLoading, error, onSend, onClear }: Prop
             <p>Ladda upp ett dokument och ställ en fråga!</p>
             <div className="chat-window__suggestions">
               <span>Exempelfrågor:</span>
-              <button onClick={() => onSend("Vad handlar dokumentet om?")}>
-                Vad handlar dokumentet om?
+              <button onClick={() => onSend("Var kontrollerar jag en medarbetares användar-ID?")}>
+                Var kontrollerar jag en medarbetares användar-ID?
               </button>
-              <button onClick={() => onSend("Vilka ORSAK och FÖRKLARING finns?")}>
-                Vilka ORSAK och FÖRKLARING finns?
+              <button onClick={() => onSend("Vilka anställningsformer finns och vad skiljer dem åt?")}>
+                Vilka anställningsformer finns och vad skiljer dem åt?
               </button>
-              <button onClick={() => onSend("Sammanfatta de viktigaste punkterna")}>
-                Sammanfatta de viktigaste punkterna
+              <button onClick={() => onSend("Vad händer om för mycket lön har betalats ut?")}>
+                Vad händer om för mycket lön har betalats ut?
               </button>
             </div>
           </div>

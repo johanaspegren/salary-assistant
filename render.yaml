@@ -1,0 +1,47 @@
+services:
+  # Backend API
+  - type: web
+    name: salary-assistant-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    region: frankfurt
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      - key: EMBEDDING_PROVIDER
+        value: openai
+      - key: OPENAI_EMBEDDING_MODEL
+        value: text-embedding-3-small
+      - key: DEFAULT_CHUNK_SIZE
+        value: 500
+      - key: DEFAULT_CHUNK_OVERLAP
+        value: 50
+      - key: DEFAULT_TOP_K
+        value: 5
+      - key: DEFAULT_TEMPERATURE
+        value: 0.3
+    disk:
+      name: salary-assistant-data
+      mountPath: /app/data
+      sizeGB: 1
+    healthCheckPath: /api/health
+
+  # Frontend
+  - type: web
+    name: salary-assistant-frontend
+    runtime: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    plan: free
+    region: frankfurt
+    buildCommand: npm run build
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: salary-assistant-backend
+          envVarKey: RENDER_EXTERNAL_URL

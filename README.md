@@ -42,7 +42,7 @@ cp .env.example .env
 # Edit .env with your OpenAI key (or leave empty to use Ollama)
 
 # Run
-uvicorn app.main:app --reload --port 8000
+uvicorn app.main:app --reload --port 8080
 ```
 
 ### Frontend

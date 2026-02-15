@@ -20,9 +20,10 @@ class Settings(BaseSettings):
 
     # LLM
     openai_api_key: str = ""
+
     openai_model: str = "gpt-4o-mini"
     ollama_base_url: str = "http://localhost:11434"
-    ollama_model: str = "llama3"
+    ollama_model: str = "gemma3"
 
     # RAG
     default_top_k: int = 5
