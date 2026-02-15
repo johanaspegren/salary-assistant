@@ -24,10 +24,6 @@ services:
         value: 5
       - key: DEFAULT_TEMPERATURE
         value: 0.3
-    disk:
-      name: salary-assistant-data
-      mountPath: /app/data
-      sizeGB: 1
     healthCheckPath: /api/health
 
   # Frontend

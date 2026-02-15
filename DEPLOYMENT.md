@@ -96,22 +96,33 @@ This guide explains how to deploy the Salary Assistant app to Render.
 - **Spin down after 15 minutes** of inactivity
 - **First request after spin down takes 30-60 seconds**
 - **750 hours/month** of free runtime per service
+- **⚠️ No persistent disk storage** - uploaded documents and ChromaDB data are lost on restart/redeploy
 
 ### Cost Optimization
 
-To keep it free:
-- Use the free plan for both services
-- Monitor your usage in Render Dashboard
-- Consider upgrading to paid plans ($7/month per service) for:
-  - No spin down
-  - Faster performance
-  - More disk space
+**Free tier ($0/month):**
+- Services sleep after 15 min
+- **No persistent storage** - data resets on restart
+- Good for testing/demos
+
+**Starter tier ($7/month per service = $14/month total):**
+- No spin down (always on)
+- **25GB persistent disk** included
+- Faster performance
+- Data persists across deployments
 
 ### Data Persistence
 
-- ChromaDB data is stored on the persistent disk (`/app/data`)
-- Uploaded files are stored on the persistent disk (`/app/uploads`)
-- Data persists across deployments and restarts
+**⚠️ Important: Free tier has NO persistent storage!**
+- On free tier, all uploaded files and ChromaDB data are **lost when service restarts**
+- You'll need to re-upload documents after each cold start
+- To persist data, upgrade to **Starter plan** ($7/month per service)
+
+**With paid plan (Starter+):**
+- Add persistent disk in service settings
+- ChromaDB data stored on disk (`/app/data`)
+- Uploaded files persist (`/app/uploads`)
+- Data survives deployments and restarts
 
 ### CORS Configuration
 
