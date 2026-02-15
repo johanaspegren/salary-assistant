@@ -10,8 +10,10 @@ class Settings(BaseSettings):
     default_chunk_size: int = 500
     default_chunk_overlap: int = 50
 
-    # Embedding model (multilingual for Swedish)
-    embedding_model: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    # Embedding provider: "openai" or "ollama" (follows LLM provider by default)
+    embedding_provider: str = "openai"
+    openai_embedding_model: str = "text-embedding-3-small"
+    ollama_embedding_model: str = "nomic-embed-text"
 
     # Vector store
     chroma_persist_dir: str = "data/chroma"

@@ -16,7 +16,6 @@ from app.models import (
     ChatResponse,
     DocumentInfo,
     HealthResponse,
-    UploadSettings,
 )
 from app.rag import generate_response
 from app.vectorstore import add_chunks, clear_all, get_stats
@@ -48,11 +47,16 @@ os.makedirs(settings.upload_dir, exist_ok=True)
 @app.get("/api/health", response_model=HealthResponse)
 async def health_check():
     stats = get_stats()
+    emb_model = (
+        settings.openai_embedding_model
+        if settings.embedding_provider == "openai"
+        else settings.ollama_embedding_model
+    )
     return HealthResponse(
         status="ok",
         documents_loaded=len(uploaded_documents),
         total_chunks=stats["total_chunks"],
-        embedding_model=settings.embedding_model,
+        embedding_model=f"{settings.embedding_provider}/{emb_model}",
     )
 
 
